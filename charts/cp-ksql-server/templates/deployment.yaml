@@ -74,6 +74,9 @@ spec:
           - name: ksql-queries
             mountPath: /etc/ksql/queries
           {{- end }}
+          {{- if .Values.customVolumeMounts }}
+{{ toYaml .Values.customVolumeMounts | indent 12 }}
+          {{- end }}
           env:
           - name: KSQL_BOOTSTRAP_SERVERS
             value: {{ template "cp-ksql-server.kafka.bootstrapServers" . }}
@@ -112,6 +115,9 @@ spec:
       - name: ksql-queries
         configMap:
           name: {{ template "cp-ksql-server.fullname" . }}-ksql-queries-configmap
+      {{- end }}
+      {{- if .Values.customVolumes }}
+{{ toYaml .Values.customVolumes | indent 6 }}
       {{- end }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
