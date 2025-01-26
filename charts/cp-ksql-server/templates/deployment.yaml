@@ -75,7 +75,7 @@ spec:
             mountPath: /etc/ksql/queries
           {{- end }}
           {{- if .Values.customVolumeMounts }}
-{{ toYaml .Values.customVolumeMounts | indent 12 }}
+{{ toYaml .Values.customVolumeMounts | indent 10 }}
           {{- end }}
           env:
           - name: KSQL_BOOTSTRAP_SERVERS
